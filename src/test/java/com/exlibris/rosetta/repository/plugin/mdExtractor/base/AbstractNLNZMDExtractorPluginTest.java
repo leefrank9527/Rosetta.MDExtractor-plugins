@@ -19,7 +19,7 @@ public abstract class AbstractNLNZMDExtractorPluginTest {
     protected final static Map<String, String> initParams = new HashMap<>();
 
     static {
-        System.setProperty("digitool.home", testDirectory);
+        System.setProperty("digitool.home", "/tmp");
         initParams.put("PLUGIN_VERSION_INIT_PARAM", "4.2.4");
     }
 
