@@ -5,6 +5,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.File;
+import java.util.Objects;
+
 public class PDFHULMDExtractorPluginTest extends AbstractNLNZMDExtractorPluginTest {
     private static PDFHULMDExtractorPlugin testInstance = new PDFHULMDExtractorPlugin();
 
@@ -17,6 +20,15 @@ public class PDFHULMDExtractorPluginTest extends AbstractNLNZMDExtractorPluginTe
     public void testGetAgent() {
         String agent = testInstance.getAgent();
         assert agent != null;
+    }
+
+    @Test
+    public void testExtractAll() throws Exception {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(Objects.requireNonNull(classLoader.getResource("sample.pdf")).getFile());
+        testInstance.extract(file.getAbsolutePath());
+        String a=testInstance.getAttributeByName("PDFMetadata.Pages.Page");
+        assert a!=null;
     }
 
     @Override
