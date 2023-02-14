@@ -1,15 +1,14 @@
-package com.exlibris.rosetta.repository.plugin.mdExtractor.pdf;
+package com.exlibris.rosetta.repository.plugin.mdExtractor.epub;
 
 import com.exlibris.rosetta.repository.plugin.mdExtractor.base.AbstractNLNZMDExtractorPluginTest;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.Objects;
 
-public class PDFHULMDExtractorPluginTest extends AbstractNLNZMDExtractorPluginTest {
-    private static PDFHULMDExtractorPlugin testInstance = new PDFHULMDExtractorPlugin();
+public class EPUBPTCMDExtractorPluginTest extends AbstractNLNZMDExtractorPluginTest {
+    private static EPUBPTCMDExtractorPlugin testInstance = new EPUBPTCMDExtractorPlugin();
 
     @BeforeClass
     public static void init() {
@@ -25,14 +24,15 @@ public class PDFHULMDExtractorPluginTest extends AbstractNLNZMDExtractorPluginTe
     @Test
     public void testExtractAll() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(Objects.requireNonNull(classLoader.getResource("sample.pdf")).getFile());
+        File file = new File(Objects.requireNonNull(classLoader.getResource("font-obfuscation.epub")).getFile());
         testInstance.extract(file.getAbsolutePath());
-        String a = testInstance.getAttributeByName("PDFMetadata.Pages.Page.Sequence");
+        String a = testInstance.getAttributeByName("EPUBMetadata.Fonts.Font.FontName");
         assert a != null;
-        assert a.equals("1");
+        assert a.equals("AvenirLT-Roman");
 
-        String b = testInstance.getAttributeByName("PDFMetadata.Objects");
+        String b = testInstance.getAttributeByName("EPUBMetadata.Fonts.Font.FontFile");
         assert b != null;
+        assert b.equals("true");
     }
 
     @Override

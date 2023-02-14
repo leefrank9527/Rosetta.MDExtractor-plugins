@@ -74,7 +74,6 @@ public abstract class AbstractJhoveMDExtractorPlugin implements MDExtractorPlugi
     }
 
     public void extract(String fileName, String jhoveModule, String multiplePropertiesToCheck, String muliplePropertiesToCount, String pluginVersion) throws Exception {
-
         JhoveBase je = new JhoveBase();
         je.setLogLevel("SEVERE");
         String jhoveConfigFileName = getConfFile(jhoveModule + je.getRelease() + "-Ver" + pluginVersion);
